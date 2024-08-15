@@ -64,6 +64,9 @@ h1{
     gap: 10px;
     cursor: pointer;
 }
+.radio-box label {
+    cursor: pointer;
+}
 .radio{
     width: 20px;
     height: 20px;
@@ -111,6 +114,10 @@ h1{
     background-color:hsl(169, 79%, 17%) ;
 }
 .error {
+    border-color: hsl(0, 66%, 54%) ;
+}
+.error:focus{
+    outline: none;
     border-color: hsl(0, 66%, 54%) ;
 }
 .error-txt{
