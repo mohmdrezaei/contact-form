@@ -96,7 +96,9 @@ h1{
 }
 .checkbox-check{
     display: none;
+    cursor: pointer;
 }
+
 .btn-submit{
     background-color: hsl(169, 82%, 27%);
     width:100%;
