@@ -15,12 +15,12 @@ const queryTypeHandler = (radioBox) => {
 };
 
 const checkboxHandler = () => {
-  checkbox.style.display = "none";
-  checkboxCheck.style.display = "block";
+  checkbox.classList.toggle("hidden");
+  checkboxCheck.classList.toggle("hidden");
 };
 const checkboxCheckHandler = () => {
-  checkbox.style.display = "block";
-  checkboxCheck.style.display = "none";
+  checkbox.classList.toggle("hidden");
+  checkboxCheck.classList.toggle("hidden");
 };
 
 checkbox.addEventListener("click", checkboxHandler);

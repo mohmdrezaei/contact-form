@@ -5,23 +5,47 @@ const email = document.getElementById("email");
 const message = document.getElementById("message");
 const radioBox = document.querySelectorAll(".radio-box");
 const typeError = document.getElementById("type-error");
-const checkbox1 = document.querySelector(".checkbox");
+const checkboxCheck1 = document.querySelector(".checkbox-check");
 const checkboxError = document.getElementById("checkbox-error");
 
 const validateField = (field) => {
   return field.trim() !== "";
 };
 
-function validateEmail(email) {
+const validateEmail =(email) =>{
   const regex = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
   return regex.test(email);
 }
-
+const validateRadioBox = ()=>{
+  const isSelected = Array.from(radioBox).some((box) =>
+    box.classList.contains("selected")
+  );
+  if (isSelected) {
+    typeError.innerText = "";
+  } else {
+    typeError.innerText = "Please select a query type value";
+  }
+}
+const validateCheckbox = ()=> {
+  if(checkboxCheck1.classList.contains("hidden")) {
+    checkboxError.innerText = "To submit this form, please consent to being contacted"
+    hasErrors= true
+   }else{
+     checkboxError.innerText = ""
+     hasErrors= false
+   }
+}
 const submitFormHandler = (e) => {
   e.preventDefault();
   let hasErrors = false;
 
-  // Validate all fields in a loop
+  if(checkboxCheck1.classList.contains("hidden")) {
+    checkboxError.innerText = "To submit this form, please consent to being contacted"
+    hasErrors= true
+   }else{
+     checkboxError.innerText = ""
+     hasErrors= false
+   }
   const requiredFields = [fname, lname, email, message];
   requiredFields.forEach((field) => {
     if (!validateField(field.value)) {
@@ -36,25 +60,15 @@ const submitFormHandler = (e) => {
       hasErrors = true;
     }
   });
+  validateCheckbox()
+  validateRadioBox()
 
-  const isSelected = Array.from(radioBox).some((box) =>
-    box.classList.contains("selected")
-  );
-  if (isSelected) {
-    typeError.innerText = "";
-  } else {
-    typeError.innerText = "Please select a query type value";
-  }
-
-  if(checkbox1.style.display == "block") {
-   checkboxError.innerText = "To submit this form, please consent to being contacted"
-  }else{
-    checkboxError.innerText = ""
-  }
+  
   if (!hasErrors) {
     alert("success");
     form.submit();
   }
+  
 };
 
 const showError = (field, message) => {

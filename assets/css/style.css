@@ -107,7 +107,6 @@ h1 {
 }
 
 .checkbox-check {
-    display: none;
     cursor: pointer;
 }
 
@@ -142,15 +141,20 @@ h1 {
 
 }
 
+.hidden {
+    display: none;
+}
+
 @media screen and (max-width:800px) {
     .contact-form-sec {
         width: auto;
-        margin:60px 20px;
+        margin: 60px 20px;
     }
 
     .input-groups {
         display: block;
     }
+
     .radio-boxes {
         display: block;
     }
