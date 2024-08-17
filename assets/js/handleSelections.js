@@ -28,3 +28,4 @@ checkboxCheck.addEventListener("click", checkboxCheckHandler);
 radioBoxes.forEach((radioBox) => {
   radioBox.addEventListener("click", () => queryTypeHandler(radioBox));
 });
+

@@ -9,14 +9,20 @@
 body {
     background-color: hsl(148, 38%, 91%);
     font-family: 'Karla', sans-serif;
+    
 }
-
+.container{
+    position: relative;
+    width: 1440px;
+    margin: auto;
+}
 .contact-form-sec {
     width: 800px;
     background-color: #fff;
-    margin: 100px auto;
+    margin:auto;
     border-radius: 10px;
     padding: 40px;
+    margin-bottom: 120px;
 }
 
 h1 {
@@ -143,6 +149,42 @@ h1 {
 
 .hidden {
     display: none;
+}
+.message-box{
+    width: 500px;
+    margin: auto;
+    background-color: hsl(187, 24%, 22%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 20px;
+    visibility: hidden;
+    transition: all 1s ease-in;
+}
+.message-box.show {
+    visibility: visible;
+    animation: showMessage 0.5s ease-in-out;
+}
+@keyframes showMessage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.message-title{
+    font-size: 1.2rem;
+    display: flex;
+    gap: 10px;
+}
+.message{
+    font-size: 1rem;
+    width: auto;
+    margin: 20px 0 10px 0;
+    color: hsl(187, 24%, 78%);
 }
 
 @media screen and (max-width:800px) {

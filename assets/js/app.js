@@ -7,47 +7,32 @@ const radioBox = document.querySelectorAll(".radio-box");
 const typeError = document.getElementById("type-error");
 const checkboxCheck1 = document.querySelector(".checkbox-check");
 const checkboxError = document.getElementById("checkbox-error");
+const successMessage = document.querySelector(".message-box");
 
-const validateField = (field) => {
-  return field.trim() !== "";
-};
+
+const validateField = (field) => field.trim() !== "";
 
 const validateEmail = (email) => {
   const regex = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
   return regex.test(email);
 };
 const validateRadioBox = () => {
-  const isSelected = Array.from(radioBox).some((box) =>
-    box.classList.contains("selected")
-  );
-  if (isSelected) {
-    typeError.innerText = "";
-  } else {
-    typeError.innerText = "Please select a query type value";
-  }
+  const isSelected = Array.from(radioBoxes).some((box) => box.classList.contains("selected"));
+  typeError.textContent = isSelected ? "" : "Please select a query type";
 };
+
 const validateCheckbox = () => {
-  if (checkboxCheck1.classList.contains("hidden")) {
-    checkboxError.innerText =
-      "To submit this form, please consent to being contacted";
-    hasErrors = true;
-  } else {
-    checkboxError.innerText = "";
-    hasErrors = false;
-  }
+  checkboxError.innerText = checkboxCheck1.classList.contains("hidden")
+    ? "To submit this form, please consent to being contacted"
+    : "";
 };
+
 const submitFormHandler = (e) => {
   e.preventDefault();
   let hasErrors = false;
-
-  if (checkboxCheck1.classList.contains("hidden")) {
-    checkboxError.innerText =
-      "To submit this form, please consent to being contacted";
-    hasErrors = true;
-  } else {
-    checkboxError.innerText = "";
-    hasErrors = false;
-  }
+  
+  validateCheckbox();
+  validateRadioBox();
   const requiredFields = [fname, lname, email, message];
   requiredFields.forEach((field) => {
     if (!validateField(field.value)) {
@@ -61,12 +46,9 @@ const submitFormHandler = (e) => {
       }
     }
   });
-  validateCheckbox();
-  validateRadioBox();
 
   if (!hasErrors) {
-    alert("success");
-    form.submit();
+    showSuccessMessage();
   }
 };
 
@@ -78,6 +60,22 @@ const showError = (field, message) => {
 const hideError = (field) => {
   field.classList.remove("error");
   field.nextElementSibling.innerText = "";
+};
+
+const showSuccessMessage = () => {
+  successMessage.classList.add("show");
+  radioBox.forEach((box) => {
+    box.classList.remove("selected");
+    box.querySelector(".radio-selected").style.display = "none";
+    box.querySelector(".radio").style.display = "block";
+  });
+  checkboxCheck1.classList.add("hidden");
+  checkbox.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  form.reset();
+  setTimeout(() => {
+    successMessage.classList.remove("show");
+  }, 2000);
 };
 
 form.addEventListener("submit", submitFormHandler);
