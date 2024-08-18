@@ -206,7 +206,7 @@ h1 {
     }
     .contact-form-sec {
         width: auto;
-        margin: 60px 20px;
+        margin: 0 20px;
         
     }
     body{
@@ -220,5 +220,9 @@ h1 {
 
     .radio-boxes {
         display: block;
+    }
+    .message-box{
+        width: auto;
+        margin: 0 20px;
     }
 }
