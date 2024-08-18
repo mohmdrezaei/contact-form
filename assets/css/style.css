@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: hsl(148, 38%, 91%);
+    background: url(../images/8270301.jpg) center;
     font-family: 'Karla', sans-serif;
     
 }
@@ -15,15 +15,18 @@ body {
     position: relative;
     width: 1440px;
     margin: auto;
+    background-color: hsl(148, 38%, 91%);
+    padding: 20px;
 }
 .contact-form-sec {
     width: 800px;
     background-color: #fff;
-    margin:auto;
+    margin:  auto; /* Adjust the margin-top value as needed */
     border-radius: 10px;
     padding: 40px;
-    margin-bottom: 120px;
-}
+    margin-bottom: 70px;
+    z-index: -3;
+  }
 
 h1 {
     margin-bottom: 10px;
@@ -150,20 +153,21 @@ h1 {
 .hidden {
     display: none;
 }
-.message-box{
+.message-box {
     width: 500px;
     margin: auto;
     background-color: hsl(187, 24%, 22%);
     color: #fff;
     border-radius: 10px;
-    padding: 30px;
-    margin-top: 20px;
+    padding: 20px;
     visibility: hidden;
     transition: all 1s ease-in;
-}
+  }
+  
+  
 .message-box.show {
     visibility: visible;
-    animation: showMessage 0.5s ease-in-out;
+    animation: showMessage 0.5s ease-in;
 }
 @keyframes showMessage {
     from {
