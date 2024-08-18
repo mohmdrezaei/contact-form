@@ -105,5 +105,5 @@ form.addEventListener("submit", submitFormHandler);
 const eventPrevent = (event)=> event.preventDefault();
 
 form.addEventListener("paste", eventPrevent);
-form.getElementById("myField").addEventListener("drop", eventPrevent);
-form.getElementById("myField").addEventListener("cut", eventPrevent);
+form.addEventListener("drop", eventPrevent);
+form.addEventListener("cut", eventPrevent);
