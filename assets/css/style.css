@@ -190,11 +190,28 @@ h1 {
     margin: 20px 0 10px 0;
     color: hsl(187, 24%, 78%);
 }
+@media screen and (max-width:1000px) {
+    .container{
+        width: auto;
+    }
+    body{
+        background: none;
+        width: auto;
+    }
+}
 
 @media screen and (max-width:800px) {
+    .container{
+        width: auto;
+    }
     .contact-form-sec {
         width: auto;
         margin: 60px 20px;
+        
+    }
+    body{
+        background: none;
+        width: auto;
     }
 
     .input-groups {
