@@ -9,7 +9,6 @@ const checkboxCheck1 = document.querySelector(".checkbox-check");
 const checkboxError = document.getElementById("checkbox-error");
 const successMessage = document.querySelector(".message-box");
 
-
 const validateField = (field) => field.trim() !== "";
 
 const validateEmail = (email) => {
@@ -17,22 +16,30 @@ const validateEmail = (email) => {
   return regex.test(email);
 };
 const validateRadioBox = () => {
-  const isSelected = Array.from(radioBoxes).some((box) => box.classList.contains("selected"));
+  const isSelected = Array.from(radioBox).some((box) => box.classList.contains("selected"));
   typeError.textContent = isSelected ? "" : "Please select a query type";
+  return isSelected;
 };
 
 const validateCheckbox = () => {
-  checkboxError.innerText = checkboxCheck1.classList.contains("hidden")
+  const hiddenClass = checkboxCheck1.classList.contains("hidden");
+  checkboxError.innerText = hiddenClass
     ? "To submit this form, please consent to being contacted"
     : "";
+  return !hiddenClass;
 };
 
 const submitFormHandler = (e) => {
   e.preventDefault();
   let hasErrors = false;
-  
-  validateCheckbox();
-  validateRadioBox();
+
+  if (!validateCheckbox()) {
+    hasErrors = true;
+  }
+
+  if (!validateRadioBox()) {
+    hasErrors = true;
+  }
   const requiredFields = [fname, lname, email, message];
   requiredFields.forEach((field) => {
     if (!validateField(field.value)) {
