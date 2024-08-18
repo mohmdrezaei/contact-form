@@ -9,7 +9,22 @@ const checkboxCheck1 = document.querySelector(".checkbox-check");
 const checkboxError = document.getElementById("checkbox-error");
 const successMessage = document.querySelector(".message-box");
 
-const validateField = (field) => field.trim() !== "";
+const validateField = (field) => {
+  const value = field.value.trim();
+  if (value === "") {
+    return false;
+  }
+
+  // Check if the value contains characters that could have been pasted
+  const regex = /[\s\t\r\n]/;
+  if (regex.test(value)) {
+    showError(field, "Please enter information using only the keyboard.");
+    return false;
+  }
+
+  return true;
+};
+
 
 const validateEmail = (email) => {
   const regex = /^[a-zA-Z0–9._-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,4}$/;
@@ -86,3 +101,9 @@ const showSuccessMessage = () => {
 };
 
 form.addEventListener("submit", submitFormHandler);
+
+const eventPrevent = (event)=> event.preventDefault();
+
+form.addEventListener("paste", eventPrevent);
+form.getElementById("myField").addEventListener("drop", eventPrevent);
+form.getElementById("myField").addEventListener("cut", eventPrevent);
